@@ -1,4 +1,13 @@
-# RSL Drafter
+<p align="center">
+  <img src="rsl-drafter-brand-logo-transparent.png" alt="RSL Drafter orbital RD logo" width="220">
+</p>
+
+<h1 align="center">RSL Drafter</h1>
+
+<p align="center">
+  <a href="https://rsldrafter.app">Website</a> ·
+  <a href="https://discord.gg/Nzm5487Ncz">Discord community</a>
+</p>
 
 RSL Drafter is an independent Windows tool for preparing and running Preset Lineup sessions in RAID: Shadow Legends Live Arena.
 
