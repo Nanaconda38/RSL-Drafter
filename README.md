@@ -20,7 +20,8 @@ This repository hosts application releases. The application source code is not p
 - Application: **0.1.0**
 - Supported RAID build: **11.71.0**
 - Platform: **Windows x64**
-- Availability: **Private beta; public distribution is not open.**
+- Availability: **Private beta; public downloads are not open.**
+- Access: [Apply for the private beta](https://rsldrafter.app/beta-application). Applications are reviewed manually; an approval email contains a single-use account invitation. It does not grant private download or repository access.
 - Downloads: [Releases](https://github.com/Nanaconda38/RSL-Drafter/releases)
 
 ## What it currently does
