@@ -11,7 +11,7 @@
 
 RSL Drafter is an independent Windows tool for preparing and running Preset Lineup sessions in RAID: Shadow Legends Live Arena.
 
-This repository hosts application releases. The application source code is not published here.
+This repository provides product information and release details. The application source code is not published here.
 
 > **Beta:** Features, compatibility, and availability may change between releases. Check the release notes before installing an update.
 
@@ -22,7 +22,7 @@ This repository hosts application releases. The application source code is not p
 - Platform: **Windows x64**
 - Availability: **Private beta; public downloads are not open.**
 - Access: [Apply for the private beta](https://rsldrafter.app/beta-application). Applications are reviewed manually; an approval email contains a single-use account invitation. It does not grant private download or repository access.
-- Downloads: [Releases](https://github.com/Nanaconda38/RSL-Drafter/releases)
+- Downloads: Public downloads are closed. A compatible private tester build, when issued, is provided separately by the beta team.
 
 ## What it currently does
 
@@ -38,18 +38,22 @@ This repository hosts application releases. The application source code is not p
 - Adaptive Draft and Classic Arena are not available in this application build.
 - RSL Drafter requires Windows x64 and RAID build 11.71.0. It stops if compatibility checks fail.
 
-## Installation
+## Private beta setup
 
-1. Download the installer from the [releases page](https://github.com/Nanaconda38/RSL-Drafter/releases) when a release is available.
-2. Run the installer and follow its instructions.
-3. Launch RAID through the official Plarium Play installation.
-4. Start RSL Drafter and check compatibility status before connecting.
+These steps apply only if the beta team has supplied a compatible tester build and granted your account access:
 
-Check the release notes for version-specific installation instructions and known issues.
+1. Open RSL Drafter and click **Sign in**.
+2. In the secure browser page, enter the username you chose when creating the account (or your account email) and the password you set through the invitation.
+3. Return to RSL Drafter. Click **Launch RAID**, then click **Connect** when the game is open.
+4. If the app denies access, contact the beta team; account sign-in and beta access are checked separately.
+
+[Open the illustrated setup guide](https://rsldrafter.app/beta-get-started.html).
+
+Never share your password or invitation link. Beta approval does not automatically grant access to private downloads or this repository.
 
 ## Data and network use
 
-The distributed 0.1.0 build does not collect or upload match telemetry. It checks GitHub for update information at launch and when you request an update check; downloading an update requires confirmation. The champion reference catalog is bundled with the application.
+The distributed 0.1.0 build does not collect or upload match telemetry. It checks GitHub for release information at launch and when you request an update check; downloading an update requires confirmation. The champion reference catalog is bundled with the application.
 
 ## Reporting a problem
 
