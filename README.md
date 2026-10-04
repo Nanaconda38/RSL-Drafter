@@ -44,7 +44,7 @@ Never share your password or invitation link. Applying does not create an accoun
 
 ## Data and updates
 
-Public build 0.1.2 does not upload match telemetry to an RSL Drafter server. Account sign-in, access checks and downloads are separate services. See the [data notice](https://rsldrafter.app/data-notice) for application and account details.
+Public build 0.1.2 does not upload match telemetry to an RSL Drafter server. Account sign-in, access checks and downloads are separate services. See the [data notice](https://rsldrafter.app/data-notice) for application and account details. See [TELEMETRY.md](TELEMETRY.md) for the field-by-field data inventory, including the distinction between anonymous and pseudonymous data.
 
 Check the [GitHub Releases page](https://github.com/Nanaconda38/RSL-Drafter/releases) for updates and download them manually. The in-app update feed is not configured as the source for this public release.
 
