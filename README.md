@@ -16,7 +16,7 @@ This repository provides product information and release downloads. The applicat
 
 ## Public beta
 
-- **Current build:** [RSL Drafter 0.1.2](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.2)
+- **Current build:** [RSL Drafter 0.1.3](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.3)
 - **Platform:** Windows x64
 - **Supported game build:** RAID: Shadow Legends 11.75.0
 - **Download:** Public on the GitHub Releases page.
@@ -32,7 +32,7 @@ The current public release supports **Preset Lineup for Live Arena only**. Adapt
 
 ## Download and get started
 
-1. Download the Windows installer from the [v0.1.2 release page](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.2) and read its release notes.
+1. Download the Windows installer from the [v0.1.3 release page](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.3) and read its release notes.
 2. [Apply for beta access](https://rsldrafter.app/beta-application) and verify your email.
 3. If your application is approved, use the single-use invitation to choose a username and create your account.
 4. Open RSL Drafter and choose **Sign in**. Enter your username or email and the password you set through the invitation.
@@ -44,9 +44,15 @@ Never share your password or invitation link. Applying does not create an accoun
 
 ## Data and updates
 
-Public build 0.1.2 does not upload match telemetry to an RSL Drafter server. Account sign-in, access checks and downloads are separate services. See the [data notice](https://rsldrafter.app/data-notice) for application and account details. See [TELEMETRY.md](TELEMETRY.md) for the field-by-field data inventory, including the distinction between anonymous and pseudonymous data.
+The standard Release in public build 0.1.3 enables anonymous V3 and optional pseudonymous V1 match-sharing paths. Anonymous-only is the default choice, but collection starts only after you review and save the in-app notice. Account-linked sharing is a separate explicit choice bound to the signed-in beta account; the match JSON omits direct account identifiers. Turn sharing off in Settings to stop future collection/uploads and delete pending local records; records already accepted by the service are not removed by opting out.
 
-Check the [GitHub Releases page](https://github.com/Nanaconda38/RSL-Drafter/releases) for updates and download them manually. The in-app update feed is not configured as the source for this public release.
+Only complete, played Live Arena matches with an explicit Victory or Defeat are eligible. Match records contain observed draft facts, champion Base IDs, bans and leaders, result/quality categories, coarse points ranges (general points in 50-point buckets and seasonal points in 10-point buckets when available), and app/RAID/collector/catalog version metadata. They exclude player/opponent names and account IDs, device identifiers, exact points, roster/equipment inventories, screenshots, logs and raw game memory. See the [data notice](https://rsldrafter.app/data-notice) for the consent, field, network and retention details, and [TELEMETRY.md](TELEMETRY.md) for the technical inventory.
+
+Pending match JSON is stored locally for up to 30 days, with a shared limit of 500 files or 50 MiB. The production service is configured to expire accepted raw match records after two calendar years; elapsed expiry has not been independently verified. An authenticated live-match receipt and retrieval have not yet been verified, so an upload attempt or local receipt counter is not proof of durable server storage.
+
+The app checks GitHub for the latest release at every launch before sign-in. A newer version must be installed to continue; if the latest-version check is unavailable or invalid, sign-in remains blocked until the check can be retried. The app asks before downloading an update. GitHub receives the connection information needed for the startup check and any download; server-side logging and retention are not verified by RSL Drafter.
+
+The public website does not use analytics. The beta application form uses Cloudflare Turnstile when applications are enabled. Account sign-in, beta access checks, applications, release checks and downloads are separate from match records.
 
 ## Reporting a problem
 
