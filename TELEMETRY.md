@@ -2,6 +2,7 @@
 
 **Status checked:** 2026-10-12  
 **Public client covered:** Windows beta 0.1.3 standard Release  
+**Package compatibility checked:** 2026-10-21 — Windows 11 x64, standard Plarium Play, RAID 11.80.0 (static package inspection; not runtime validation)  
 **In-app notice:** 2026-10-v10
 
 This is a technical inventory of the current public beta and the related service contracts. It is not a promise that a later release behaves the same way; check that release's notes and in-app notice. “Anonymous” below describes the match payload, not every network or account record that can exist around a request.
@@ -13,7 +14,7 @@ This is a technical inventory of the current public beta and the related service
 - Only a complete, played Live Arena match with an explicit Victory or Defeat is eligible. Draws, pre-combat departures, unknown outcomes, abandoned matches and incomplete captures are not queued.
 - Turning sharing off stops further collection and uploads, cancels an active request, and deletes pending local match files. It does not erase records already accepted by the service.
 - Production route and retention configuration are present, but no authenticated real-player match has yet been independently verified as accepted and retrieved from production. Elapsed expiry is also unverified.
-- The public site uses no analytics. The application sends a mandatory GitHub latest-release check at every launch before sign-in; GitHub receives ordinary connection metadata. The beta request form uses Cloudflare Turnstile when applications are enabled.
+- The public site uses no analytics. The application sends a mandatory GitHub latest-release check at every launch before sign-in; GitHub receives ordinary connection metadata. Normal signup and sign-in use the hosted identity service, and signed-in beta-access checks go to the separate API.
 - “Anonymous” describes the match body only. Separate installation credentials and infrastructure connection metadata mean the whole network transaction should not be described as unconditionally anonymous.
 
 ## Anonymous match data
@@ -57,15 +58,17 @@ The local outbox expires pending files after 30 days and is bounded to 500 files
 
 Separate from match sharing, the beta service uses opaque identity references to check access grants. The grant database stores an issuer/subject reference and grant state, not the email or password. Administrative audit entries include the action, time and a one-way hash of the administrator identity; the audit-retention period has not been set or verified. These records support account access and administration; they are not match telemetry.
 
-## Applications and accounts
+## Accounts and beta access
 
-The public beta application form collects an email address, Windows/RAID compatibility confirmation, selected Live Arena league, consent/notice version, and a Cloudflare Turnstile challenge. It does not request a first or last name, RAID username/player ID, password, champion roster or match data. The chosen account username is the applicant's pseudonym.
+New users create an account with a username, email address and password through the hosted Keycloak identity service linked from the [site account page](https://rsldrafter.app/beta-account). In the normal signup flow, Keycloak sends one email confirmation. After confirming the address and signing in to the account page, the beta API automatically creates an access grant while enrollment is open if its checks pass. Registration or email verification alone does not grant access; the API is authoritative. If enrollment is paused, no new grant is created until it reopens. No application, human review, invitation or separate beta-decision email follows signup in the normal flow.
 
-Before email verification, submitted fields are held temporarily; unverified requests expire and are deleted. After verification, the service stores the verified email, eligibility confirmation, league, consent/submission/expiry times and application status. Applications are deleted from the active database after 90 days. A human reviews applications. An approved applicant receives a single-use invitation that expires after seven days.
+Keycloak stores the username and password verifier. The website and beta API do not receive the plaintext password. After sign-in, the browser holds an OIDC token in memory and sends it to the API over HTTPS; the site does not persist OIDC tokens. Keycloak may use necessary authentication cookies on its hosted sign-in service so the account page can restore an active sign-in session after a refresh. These are necessary authentication cookies; no analytics or tracking cookies were added. Keycloak and its configured email provider process the recipient address and message needed for confirmation and, if requested, password-recovery email. Their service-side logs and retention have not been independently verified.
 
-Keycloak, the identity provider, stores the username and password verifier. The site and application API do not handle the user's plaintext password. The account is linked to the approved application and access grant using an opaque issuer/subject reference. Email delivery providers receive the recipient address and message needed to send verification, decision, invitation or password-setup mail.
+The beta-access database stores the identity issuer and subject reference, grant status and timestamps, the self-enrollment notice version, and a one-way hash of the actor identity in the audit record. It does not store the account email in the grant row. Authorized administrators can read current username, email, enabled state and verification status from the identity service when managing accounts. Retention periods for identity accounts, active grants and audit entries have not been set or independently verified. Match-data sharing remains a separate choice in the Windows app.
 
-Authorized administrators can view the verified-email snapshot, league and status for an application, and current account email/enabled/verified state from the identity service. Grant records themselves store no email. User-confirmed account deletion revokes beta access and requests identity deletion; a short-lived safeguard may remain while identity deletion is retried. Database backups may retain deleted database data until backup expiry, as described above.
+A user can request account deletion from the account page after signing in. The service revokes beta access and queues identity deletion; active legacy application records and queued emails associated with the account are removed. If the identity service is temporarily unavailable, a restricted retry queue holds the identity reference until deletion is confirmed, with a short-lived hashed marker to prevent still-valid tokens from restoring access. Daily database backups are kept in restricted local server storage for up to two years, so deleted information may remain in a backup until that copy expires. A full restore-and-reconciliation drill has not been completed; deletion is not immediate erasure from every backup copy.
+
+The former application-and-invitation workflow is no longer the normal signup path, and new legacy application submissions are disabled in the source deployment configuration. Previously issued verification, invitation and withdrawal links may continue to work until they expire. Older application records follow their existing 90-day expiry. Forgot-password recovery is handled by Keycloak and sent to the verified email address.
 
 ## Local files, diagnostics and support
 
@@ -77,7 +80,7 @@ When a Discord ticket is opened, Discord and the Ticket Tool integration process
 
 ## Website, hosting and third-party service metadata
 
-The public site says it does not use analytics. The application page loads Cloudflare Turnstile and submits eligible applications to the separate API. The API uses the Cloudflare-provided client address for transient in-memory rate limits and does not put a source IP in the application record. Cloudflare, the hosting provider, API and email providers may process ordinary connection or delivery metadata; their service-side logging and retention have not been independently verified here.
+The public site says it does not use analytics. Normal account registration and sign-in use hosted Keycloak pages; the account page uses the separate beta API for signed-in access and account-management requests. Cloudflare, the hosting provider, Keycloak, the API and email provider may process ordinary connection or delivery metadata; their service-side logging and retention have not been independently verified here.
 
 GitHub receives the connection information needed to serve downloads. GitHub issues are public: anything posted there, including the account name, issue text and attachments, can be seen publicly. Discord and Ticket Tool are separate services and are subject to their own policies.
 
@@ -86,6 +89,6 @@ GitHub receives the connection information needed to serve downloads. GitHub iss
 - [Public beta data notice](https://rsldrafter.app/data-notice)
 - [Current public release](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.3)
 - [Report an issue](https://github.com/Nanaconda38/RSL-Drafter/issues)
-- [Discord community](https://discord.gg/Nzm5487Ncz)
+- [Discord community](https://discord.gg/aTnw69gnHc)
 
-This inventory is technical documentation, not a complete legal privacy policy. It reflects the public 0.1.3 standard Release profile and the 2026-10-v10 in-app notice checked on 2026-10-12. The standard Release source enables both upload routes, and production route/expiry configuration is documented; however, authenticated real-match receipt/retrieval, durable database storage, elapsed expiry, backup expiry and linked-row account-deletion behavior have not been independently verified end to end. Review the exact Distribution artifact and deployed service before making stronger claims.
+This inventory is technical documentation, not a complete legal privacy policy. It reflects the public 0.1.3 standard Release profile and the 2026-10-v10 in-app notice checked on 2026-10-12. The standard Release source enables both upload routes, and production route/expiry configuration is documented; however, authenticated real-match receipt/retrieval, durable database storage, elapsed expiry, backup expiry and linked-row account-deletion behavior have not been independently verified end to end. Static package compatibility was checked on 2026-10-21. That inspection does not verify runtime account email delivery, a live connection or a played match. Review the exact Distribution artifact and deployed service before making stronger claims.
