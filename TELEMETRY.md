@@ -2,7 +2,7 @@
 
 **Status checked:** 2026-10-12  
 **Public client covered:** Windows beta 0.1.3 standard Release  
-**Package compatibility checked:** 2026-10-21 — Windows 11 x64, standard Plarium Play, RAID 11.80.0 (static package inspection; not runtime validation)  
+**Current package compatibility:** Windows 11 x64, standard Plarium Play installation, RAID 11.80.0; administrator permission; internet for startup version checks and account sign-in; bundled .NET/WPF 8.0.29. Package facts were statically checked on 2026-10-21; this is not runtime validation.  
 **In-app notice:** 2026-10-v10
 
 This is a technical inventory of the current public beta and the related service contracts. It is not a promise that a later release behaves the same way; check that release's notes and in-app notice. “Anonymous” below describes the match payload, not every network or account record that can exist around a request.
