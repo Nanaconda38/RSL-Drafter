@@ -42,7 +42,7 @@ The current public release supports **Preset Lineup for Live Arena only**. Adapt
 
 [Open the illustrated setup guide](https://rsldrafter.app/beta-get-started).
 
-Never share your password, confirmation link or any previously issued invitation link. Previously issued verification, invitation and withdrawal links may remain usable until they expire.
+Never share your password or confirmation link. Previously issued verification, invitation and withdrawal links may remain usable until they expire.
 
 ## Data and updates
 
