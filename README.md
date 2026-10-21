@@ -6,8 +6,8 @@
 
 <p align="center">
   <a href="https://rsldrafter.app">Website</a> ·
-  <a href="https://rsldrafter.app/beta-application">Apply for beta access</a> ·
-  <a href="https://discord.gg/Nzm5487Ncz">Discord community</a>
+  <a href="https://rsldrafter.app/beta-account">Beta account</a> ·
+  <a href="https://discord.gg/aTnw69gnHc">Discord community</a>
 </p>
 
 RSL Drafter is a Windows bot for RAID: Shadow Legends Live Arena. It runs a Preset Lineup that you configure: five champion slots, ordered substitutes, draft priorities and supported Battle Openers. You review the setup and explicitly start each bounded session.
@@ -17,10 +17,10 @@ This repository provides product information and release downloads. The applicat
 ## Public beta
 
 - **Current build:** [RSL Drafter 0.1.3](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.3)
-- **Platform:** Windows x64
-- **Supported game build:** RAID: Shadow Legends 11.75.0
-- **Download:** Public on the GitHub Releases page.
-- **App access:** Applications are reviewed by a person. Verify your email, then wait for the decision. If approved, a single-use invitation lets you create an account. An approved account and access grant are required to use the app.
+- **Platform:** Windows 11 x64
+- **Supported game build:** RAID: Shadow Legends 11.80.0
+- **Download:** Public on the [latest GitHub Releases page](https://github.com/Nanaconda38/RSL-Drafter/releases/latest).
+- **App access:** Downloads are public; using the app requires an active beta access grant. Create an account at the [beta account page](https://rsldrafter.app/beta-account), verify the one confirmation email, then sign in to that page. While enrollment is open, the beta API creates a grant only when its checks pass. Account registration or email verification alone does not grant access; the API is authoritative.
 
 ## What the bot does
 
@@ -32,15 +32,17 @@ The current public release supports **Preset Lineup for Live Arena only**. Adapt
 
 ## Download and get started
 
-1. Download the Windows installer from the [v0.1.3 release page](https://github.com/Nanaconda38/RSL-Drafter/releases/tag/v0.1.3) and read its release notes.
-2. [Apply for beta access](https://rsldrafter.app/beta-application) and verify your email.
-3. If your application is approved, use the single-use invitation to choose a username and create your account.
-4. Open RSL Drafter and choose **Sign in**. Enter your username or email and the password you set through the invitation.
+1. Open the [latest GitHub release](https://github.com/Nanaconda38/RSL-Drafter/releases/latest), read the release notes, and use `ArenaDrafter-Setup-v0.1.3.exe` for a first installation.
+2. [Create an account or sign in](https://rsldrafter.app/beta-account) on the site account page.
+3. For a new account, complete the hosted sign-up and verify the one confirmation email. Sign in to the site account page; while enrollment is open, the API automatically creates an access grant when its checks pass. If enrollment is paused, no new grant is created until it reopens.
+4. Open RSL Drafter and choose **Sign in**. The app opens the secure browser sign-in page; enter your username or email and password there, never in the desktop app.
 5. Return to the app, launch RAID if needed, connect, review your Preset Lineup and session limits, then explicitly start Live Arena.
+
+**Requirements:** Windows 11 x64, the standard Plarium Play installation of RAID: Shadow Legends, administrator permission, and internet access for the startup version check and account sign-in. .NET/WPF 8.0.29 is bundled; no separate runtime or developer tools are needed. Use the release ZIP and manifest only for the in-app updater, not for a first installation.
 
 [Open the illustrated setup guide](https://rsldrafter.app/beta-get-started).
 
-Never share your password or invitation link. Applying does not create an account or grant app access.
+Never share your password, confirmation link or any previously issued invitation link. Previously issued verification, invitation and withdrawal links may remain usable until they expire.
 
 ## Data and updates
 
@@ -52,7 +54,7 @@ Pending match JSON is stored locally for up to 30 days, with a shared limit of 5
 
 The app checks GitHub for the latest release at every launch before sign-in. A newer version must be installed to continue; if the latest-version check is unavailable or invalid, sign-in remains blocked until the check can be retried. The app asks before downloading an update. GitHub receives the connection information needed for the startup check and any download; server-side logging and retention are not verified by RSL Drafter.
 
-The public website does not use analytics. The beta application form uses Cloudflare Turnstile when applications are enabled. Account sign-in, beta access checks, applications, release checks and downloads are separate from match records.
+The public website does not use analytics. Account sign-in, beta access checks, release checks and downloads are separate from match records.
 
 ## Reporting a problem
 
