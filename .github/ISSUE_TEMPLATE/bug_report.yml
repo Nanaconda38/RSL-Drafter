@@ -1,0 +1,97 @@
+name: "Bug report"
+description: "Report a problem with a public RSL Drafter release."
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Public issue:** Your title, answers, comments, and attachments are visible to the public. Remove private information before submitting. Never include passwords, tokens, account identifiers, usernames, email addresses, verification/invitation/callback links, raw logs, or an unredacted screenshot.
+
+        **Security report?** Do not use this public bug form for vulnerabilities. On the [Security page](https://github.com/Nanaconda38/RSL-Drafter/security), select **Report a vulnerability** to report privately through GitHub. Do not post vulnerability details in public issues or Discord. See the [security policy](https://github.com/Nanaconda38/RSL-Drafter/security/policy).
+  - type: input
+    id: app-version
+    attributes:
+      label: RSL Drafter version
+      description: Enter the version shown by the app or its release tag. If the app will not start, enter "unknown".
+      placeholder: "0.1.3"
+    validations:
+      required: true
+  - type: input
+    id: raid-build
+    attributes:
+      label: RAID build
+      description: Enter the game build shown by RAID, or "unknown" if unavailable.
+      placeholder: "11.80.0"
+    validations:
+      required: true
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      description: Include edition/build if known. "Unknown" is acceptable.
+      placeholder: "Windows 11 x64"
+    validations:
+      required: true
+  - type: dropdown
+    id: installation-channel
+    attributes:
+      label: RAID installation channel
+      description: If you choose Other, name the installer/storefront only. Do not include a local file path.
+      options:
+        - Standard Plarium Play
+        - Other installer or storefront
+        - Not sure or not applicable
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: What did you expect to happen?
+      description: Describe the expected result without including private account or game data.
+      placeholder: "I expected..."
+    validations:
+      required: true
+  - type: textarea
+    id: actual-result
+    attributes:
+      label: What happened?
+      description: Describe the observed result. Redact private information from any error text.
+      placeholder: "Instead..."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to reproduce
+      description: Give numbered steps. If it happened once and cannot be repeated, say so.
+      placeholder: |
+        1. Open...
+        2. Choose...
+        3. Observe...
+    validations:
+      required: true
+  - type: input
+    id: redacted-error-excerpt
+    attributes:
+      label: Redacted error excerpt (optional)
+      description: Paste only a short, relevant message after review. Never include a full log, token, account detail, or authentication link.
+      placeholder: "Short redacted message"
+    validations:
+      required: false
+  - type: upload
+    id: redacted-screenshot
+    attributes:
+      label: Redacted screenshot (optional)
+      description: Attach only an image you have reviewed and redacted. Uploads are public; do not attach logs, exports, or private data.
+    validations:
+      required: false
+      accept: ".png,.jpg,.jpeg,.webp"
+  - type: checkboxes
+    id: public-disclosure-review
+    attributes:
+      label: Public information check
+      options:
+        - label: I reviewed the issue title, answers, and any attachment for private information and removed it. This is not a security vulnerability report.
+          required: true
