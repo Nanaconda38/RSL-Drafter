@@ -66,3 +66,31 @@ The standard Release in public build 0.1.5 enables anonymous V3 and optional pse
 
 
 Only complete, played Live Arena matches with an explicit Victory or Defeat are eligible. Match records contain observed draft facts, champion Base IDs, bans and leaders, result/quality categories, coarse points ranges (general points in 50-point buckets and seasonal points in 10-point buckets when available), and app/RAID/collector/catalog version metadata. They exclude player/opponent names and account IDs, device identifiers, exact points, roster/equipment inventories, screenshots, logs and raw game memory. See the [data notice](https://rsldrafter.app/data-notice) for the consent, field, network and retention details, and [TELEMETRY.md](TELEMETRY.md) for the technical inventory.
+
+
+Pending match JSON is stored locally for up to 30 days, with a shared limit of 500 files or 50 MiB. The production service is configured to expire accepted raw match records after two calendar years; elapsed expiry has not been independently verified. An authenticated live-match receipt and retrieval have not yet been verified, so an upload attempt or local receipt counter is not proof of durable server storage.
+
+The app checks GitHub for the latest release at every launch before sign-in. A newer version must be installed to continue; if the latest-version check is unavailable or invalid, sign-in remains blocked until the check can be retried. The app asks before downloading an update. GitHub receives the connection information needed for the startup check and any download; server-side logging and retention are not verified by RSL Drafter.
+
+The public website does not use analytics. Account sign-in, beta access checks, release checks and downloads are separate from match records.
+
+## Reporting a problem
+
+Before opening an issue, check the release notes and existing issues. Include:
+
+- RSL Drafter version;
+- RAID build;
+- what you were doing;
+- what you expected and what happened.
+
+Do not post passwords, tokens, account details or unreviewed diagnostic files. Review any diagnostic report before attaching it.
+
+[Open an issue](https://github.com/Nanaconda38/RSL-Drafter/issues)
+
+## Disclaimer
+
+RSL Drafter is an independent community project. It is not affiliated with, endorsed by or sponsored by Plarium. RAID: Shadow Legends and related marks belong to their respective owners.
+
+## License
+
+All rights reserved. See [LICENSE](LICENSE). No open-source license is granted for this repository or the application releases.
